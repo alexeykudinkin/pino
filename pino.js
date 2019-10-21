@@ -40,9 +40,9 @@ var nums = Object.keys(levels).reduce(function (o, k) {
   return o
 }, {})
 
-// level string catch
-var lscache = Object.keys(nums).reduce(function (o, k) {
-  o[k] = flatstr('"level":' + Number(k))
+// level string cache
+var lscache = Object.keys(levels).reduce(function (o, k) {
+  o[k] = flatstr('"level":"' + k + '"')
   return o
 }, {})
 
