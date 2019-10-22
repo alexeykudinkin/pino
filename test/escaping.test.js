@@ -19,7 +19,7 @@ function testEscape (ch, key) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: 60,
+        level: "fatal",
         name: 'hello',
         msg: 'this contains ' + key,
         v: 1
@@ -86,7 +86,7 @@ test('correctly escape `hello \\u001F world \\n \\u0022`', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 60,
+      level: "fatal",
       name: 'hello',
       msg: 'hello \u001F world \n \u0022',
       v: 1

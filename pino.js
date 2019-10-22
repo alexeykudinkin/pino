@@ -42,7 +42,7 @@ var nums = Object.keys(levels).reduce(function (o, k) {
 
 // level string cache
 var lscache = Object.keys(levels).reduce(function (o, k) {
-  o[k] = flatstr('"level":"' + k + '"')
+  o[levels[k]] = flatstr('"level":"' + k + '"')
   return o
 }, {})
 
@@ -124,7 +124,7 @@ pino.addLevel = function addLevel (name, lvl) {
   if (pino.levels.labels.hasOwnProperty(lvl)) return false
   pino.levels.values[name] = lvl
   pino.levels.labels[lvl] = name
-  lscache[lvl] = flatstr('"level":' + Number(lvl))
+  lscache[lvl] = flatstr('"level":"' + name +'"')
   Pino.prototype[name] = genLog(lvl)
   return true
 }

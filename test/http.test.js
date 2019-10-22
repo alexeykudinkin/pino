@@ -19,7 +19,7 @@ test('http request support', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'my request',
       v: 1,
       req: {
@@ -61,7 +61,7 @@ test('http request support via serializer', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'my request',
       v: 1,
       req: {
@@ -99,7 +99,7 @@ test('http response support', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'my response',
       v: 1,
       res: {
@@ -138,7 +138,7 @@ test('http response support via a serializer', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'my response',
       v: 1,
       res: {
@@ -187,7 +187,7 @@ test('http request support via serializer in a child', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'my request',
       v: 1,
       req: {
