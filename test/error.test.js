@@ -19,7 +19,7 @@ test('err is serialized with additional properties set on the Error object', fun
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: level,
+      level: 'error',
       type: 'Error',
       msg: err.message,
       stack: err.stack,
@@ -44,7 +44,7 @@ if (process.version.indexOf('v0.') === -1) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: level,
+        level: 'error',
         type: 'bar',
         msg: err.message,
         stack: err.stack,
@@ -68,7 +68,7 @@ test('type, message and stack should be first level properties', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: level,
+      level: 'error',
       type: 'Error',
       msg: err.message,
       stack: err.stack,
@@ -96,7 +96,7 @@ test('err serializer', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: level,
+      level: 'error',
       err: {
         type: 'Error',
         message: err.message,

@@ -7,12 +7,12 @@ var Parse = require('fast-json-parse')
 var chalk = require('chalk')
 
 var levels = {
-  60: 'FATAL',
-  50: 'ERROR',
-  40: 'WARN',
-  30: 'INFO',
-  20: 'DEBUG',
-  10: 'TRACE'
+  'fatal':  'FATAL',
+  'error':  'ERROR',
+  'warn':   'WARN',
+  'info':   'INFO',
+  'debug':  'DEBUG',
+  'trace':  'TRACE'
 }
 
 var standardKeys = [
@@ -70,12 +70,12 @@ function pretty (opts) {
     })
 
     levelColors = {
-      60: ctx.bgRed,
-      50: ctx.red,
-      40: ctx.yellow,
-      30: ctx.green,
-      20: ctx.blue,
-      10: ctx.grey
+      'fatal':  ctx.bgRed,
+      'error':  ctx.red,
+      'warn':   ctx.yellow,
+      'info':   ctx.green,
+      'debug':  ctx.blue,
+      'trace':  ctx.grey
     }
 
     pipe.call(stream, dest, opts)

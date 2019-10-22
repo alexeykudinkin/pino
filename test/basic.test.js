@@ -13,7 +13,7 @@ function levelTest (name, level) {
   test(name + ' logs as ' + level, function (t) {
     t.plan(2)
     var instance = pino(sink(function (chunk, enc, cb) {
-      check(t, chunk, level, 'hello world')
+      check(t, chunk, name, 'hello world')
     }))
 
     instance.level = name
@@ -28,7 +28,7 @@ function levelTest (name, level) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: level,
+        level: name,
         hello: 'world',
         v: 1
       })
@@ -46,7 +46,7 @@ function levelTest (name, level) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: level,
+        level: name,
         msg: 'a string',
         hello: 'world',
         v: 1
@@ -60,7 +60,7 @@ function levelTest (name, level) {
   test('formatting logs as ' + name, function (t) {
     t.plan(2)
     var instance = pino(sink(function (chunk, enc, cb) {
-      check(t, chunk, level, 'hello 42')
+      check(t, chunk, name, 'hello 42')
     }))
 
     instance.level = name
@@ -80,7 +80,7 @@ function levelTest (name, level) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: level,
+        level: name,
         err: {
           type: 'Error',
           message: err.message,
@@ -103,7 +103,7 @@ function levelTest (name, level) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: level,
+        level: name,
         msg: 'hello world',
         hello: 'world',
         v: 1
@@ -180,7 +180,7 @@ test('set the name', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 60,
+      level: "fatal",
       name: 'hello',
       msg: 'this is fatal',
       v: 1
@@ -200,7 +200,7 @@ test('set undefined properties', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       hello: 'world',
       v: 1
     })
@@ -219,7 +219,7 @@ test('set properties defined in the prototype chain', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       hello: 'world',
       v: 1
     })
@@ -259,7 +259,7 @@ test('correctly escape msg strings', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 60,
+      level: "fatal",
       name: 'hello',
       msg: 'this contains "',
       v: 1
@@ -277,7 +277,7 @@ test('object and format string', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'foo bar',
       v: 1
     })
@@ -294,7 +294,7 @@ test('object and format string property', function (t) {
     t.deepEqual(chunk, {
       pid: pid,
       hostname: hostname,
-      level: 30,
+      level: "info",
       msg: 'foo bar',
       answer: 42,
       v: 1
@@ -331,7 +331,7 @@ test('correctly support node v4+ stderr', function (t) {
       t.deepEqual(chunk, {
         pid: pid,
         hostname: hostname,
-        level: 60,
+        level: "fatal",
         msg: 'a message',
         v: 1
       })

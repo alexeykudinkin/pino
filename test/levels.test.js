@@ -8,10 +8,10 @@ var check = require('./helper').check
 test('set the level by string', function (t) {
   t.plan(4)
   var expected = [{
-    level: 50,
+    level: "error",
     msg: 'this is an error'
   }, {
-    level: 60,
+    level: "fatal",
     msg: 'this is fatal'
   }]
   var instance = pino(sink(function (chunk, enc, cb) {
@@ -37,10 +37,10 @@ test('the wrong level throws', function (t) {
 test('set the level by number', function (t) {
   t.plan(4)
   var expected = [{
-    level: 50,
+    level: "error",
     msg: 'this is an error'
   }, {
-    level: 60,
+    level: "fatal",
     msg: 'this is fatal'
   }]
   var instance = pino(sink(function (chunk, enc, cb) {
@@ -58,10 +58,10 @@ test('set the level by number', function (t) {
 test('set the level by number via string method', function (t) {
   t.plan(4)
   var expected = [{
-    level: 50,
+    level: "error",
     msg: 'this is an error'
   }, {
-    level: 60,
+    level: "fatal",
     msg: 'this is fatal'
   }]
   var instance = pino(sink(function (chunk, enc, cb) {
@@ -102,10 +102,10 @@ test('child returns level integer', function (t) {
 test('set the level via constructor', function (t) {
   t.plan(4)
   var expected = [{
-    level: 50,
+    level: "error",
     msg: 'this is an error'
   }, {
-    level: 60,
+    level: "fatal",
     msg: 'this is fatal'
   }]
   var instance = pino({ level: 'error' }, sink(function (chunk, enc, cb) {
@@ -186,17 +186,17 @@ test('exposed labels', function (t) {
 test('setting level in child', function (t) {
   t.plan(4)
   var expected = [{
-    level: 50,
+    level: 'error',
     msg: 'this is an error'
   }, {
-    level: 60,
+    level: 'fatal',
     msg: 'this is fatal'
   }]
   var instance = pino(sink(function (chunk, enc, cb) {
     var current = expected.shift()
     check(t, chunk, current.level, current.msg)
     cb()
-  })).child({ level: 30 })
+  })).child({ level: "info" })
 
   instance.level = 'error'
   instance.info('hello world')
